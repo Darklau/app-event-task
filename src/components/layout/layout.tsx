@@ -3,7 +3,9 @@ import Header from "./header";
 
 export const Layout = () => {
     return <><Header/>
-        <main className='container'><Outlet/></main>
+        <main className='pt-[50px] bg-neutral-100'>
+            <div className='container'><Outlet/></div>
+        </main>
     </>
 
 }

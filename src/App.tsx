@@ -26,7 +26,6 @@ function App() {
             <BrowserRouter>
                 <Routes>
                     <Route path={'/'} element={<Layout/>}>
-
                         <Route path={'/'} element={<Catalog/>}/>
                         <Route path={'/cart'} element={<div>cart</div>}/>
                     </Route>
