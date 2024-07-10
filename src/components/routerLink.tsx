@@ -1,4 +1,6 @@
-interface Props{
+import {cn} from "@/utils/cn"
+
+interface Props {
     to: string;
     children: React.ReactNode;
 
@@ -6,7 +8,9 @@ interface Props{
 
 export const RouterLink = (props: Props) => {
     const isActive = window.location.pathname === props.to;
-    return <a className='flex p-[12px] rounded-md bg-neutral0'>
+    return <a href={props.to} className={cn('flex p-[12px] rounded-md ',
+        isActive ? 'bg-gray-200' : 'hover:bg-gray-200'
+    )}>
         {props.children}
     </a>
 }
