@@ -1,5 +1,6 @@
 import {Product} from "@/types/common";
 import {create} from "zustand";
+import {fetchProducts} from "@/services/product.service";
 
 interface ProductStore {
     readonly products: Product[]
@@ -13,9 +14,8 @@ export const useProductStore = create<ProductStore>((set, get) => ({
     products: [],
     fetchProducts: async () => {
         // Fetch products from API
-        const response = await fetch("https://fakestoreapi.com/products")
-        const products = await response.json()
-
+        const response = await fetchProducts()
+        const products = response.data.items
         set({products})
     },
     getProductById: (productId) =>

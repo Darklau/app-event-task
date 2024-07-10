@@ -1,13 +1,22 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import './App.css';
-import {BrowserRouter, createBrowserRouter, Route, Routes} from "react-router-dom";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {Layout} from "./components/layout/layout";
+import {useProductStore} from "@/store/productStore";
+import {Catalog} from "@/pages/catalog";
+import {useLoadingStore} from "@/store/loadingStore";
 
 function App() {
-    const router = createBrowserRouter([
-        {path: '/', element: <div>home</div>},
-        {path: '/catalog', element: <div>catalog</div>},
-    ])
+    const {fetchProducts} = useProductStore()
+    const {setLoading, setImmediateLoading} = useLoadingStore()
+    useEffect(() => {
+        setImmediateLoading(true)
+        fetchProducts().then(() => {
+            console.log('products fetched')
+            setLoading(false)
+        })
+    }, []);
+
 
     return (
         <div className="App">
@@ -18,7 +27,7 @@ function App() {
                 <Routes>
                     <Route path={'/'} element={<Layout/>}>
 
-                        <Route path={'/'} element={<div>catalog</div>}/>
+                        <Route path={'/'} element={<Catalog/>}/>
                         <Route path={'/cart'} element={<div>cart</div>}/>
                     </Route>
                 </Routes>
