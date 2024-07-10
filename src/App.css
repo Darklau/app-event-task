@@ -17,6 +17,17 @@
   }
 }
 
+.container {
+  @apply m-[0_auto];
+  max-width: calc(100% - 30px);
+  @media (min-width: 1024px) {
+    max-width: 520px;
+  }
+  @media (min-width: 1278px) {
+    max-width: 568px;
+  }
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
