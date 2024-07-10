@@ -1,4 +1,6 @@
 import {cn} from "@/utils/cn"
+import {Link, useLocation} from "react-router-dom";
+import React from "react";
 
 interface Props {
     to: string;
@@ -6,11 +8,11 @@ interface Props {
 
 }
 
-export const RouterLink = (props: Props) => {
-    const isActive = window.location.pathname === props.to;
-    return <a href={props.to} className={cn('flex p-[12px] rounded-md ',
+export const RouterLink = React.forwardRef<HTMLAnchorElement, Props>((props: Props, ref) => {
+    const isActive = useLocation().pathname === props.to
+    return <Link ref={ref} to={props.to} className={cn('uppercase flex p-[12px] rounded-md ',
         isActive ? 'bg-gray-200' : 'hover:bg-gray-200'
     )}>
         {props.children}
-    </a>
-}
+    </Link>
+})

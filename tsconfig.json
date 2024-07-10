@@ -1,10 +1,6 @@
 {
+  "extends": "./tsconfig.paths.json",
   "compilerOptions": {
-    "paths": {
-      "@/*": [
-        "src/*"
-      ]
-    },
     "target": "es5",
     "lib": [
       "dom",

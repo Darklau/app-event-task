@@ -1,32 +1,31 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-import {BrowserRouter, createBrowserRouter, Route, RouterProvider, Routes} from "react-router-dom";
-import {Layout} from "./components/layout";
+import {BrowserRouter, createBrowserRouter, Route, Routes} from "react-router-dom";
+import {Layout} from "./components/layout/layout";
 
 function App() {
-  const router = createBrowserRouter([
-    {path: '/', element:  <div>home</div>},
-    {path: '/catalog', element: <div>catalog</div>},
-  ])
+    const router = createBrowserRouter([
+        {path: '/', element: <div>home</div>},
+        {path: '/catalog', element: <div>catalog</div>},
+    ])
 
-  return (
-    <div className="App">
-      <div className='flex gap-[12px]'>
+    return (
+        <div className="App">
+            <div className='flex gap-[12px]'>
 
-      </div>
-        <BrowserRouter>
-            <Routes>
-                <Route path={'/'} element={<Layout/>}>
+            </div>
+            <BrowserRouter>
+                <Routes>
+                    <Route path={'/'} element={<Layout/>}>
 
-                    <Route path={'/'} element={<div>catalog</div>}/>
-                    <Route path={'/cart'} element={<div>cart</div>}/>
-                </Route>
-            </Routes>
-        </BrowserRouter>
+                        <Route path={'/'} element={<div>catalog</div>}/>
+                        <Route path={'/cart'} element={<div>cart</div>}/>
+                    </Route>
+                </Routes>
+            </BrowserRouter>
 
-    </div>
-  );
+        </div>
+    );
 }
 
 export default App;
