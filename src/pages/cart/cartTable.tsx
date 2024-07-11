@@ -6,8 +6,8 @@ import { TableHTMLAttributes, useEffect, useState } from 'react'
 import { CartItem } from '@/types/common'
 import moment from 'moment'
 import { Button } from '@/components/ui/button'
-
-type CartTableSort = 'price' | 'name' | 'added'
+import { CartTableSort, sortFunc } from '@/utils/misc'
+import { SortOrderButton } from '@/components/ui/sortOrderButton'
 
 interface Props extends TableHTMLAttributes<HTMLTableElement> {
   containerClass?: string
@@ -66,44 +66,29 @@ export const CartTableRow = ({ product }: { product: CartItem }) => {
   )
 }
 
-const sortFunc = (items: [CartItem, CartItem], sort: CartTableSort, asc: boolean) => {
-  const [a, b] = items
-  if (sort === 'price') {
-    return asc ? a.price - b.price : b.price - a.price
-  }
-  if (sort === 'name') {
-    return asc ? a.name.localeCompare(b.name) : b.name.localeCompare(a.name)
-  }
-  if (sort === 'added') {
-    return asc ? moment(a.added).diff(moment(b.added)) : moment(b.added).diff(moment(a.added))
-  }
-  return 0
-}
+// const sortFunc = (
+//   items: [Product | CartItem, Product | CartItem],
+//   sort: CartTableSort,
+//   asc: boolean
+// ) => {
+//   const [a, b] = items
+//   if (sort === 'price') {
+//     return asc ? a.price - b.price : b.price - a.price
+//   }
+//   if (sort === 'name') {
+//     return asc ? a.name.localeCompare(b.name) : b.name.localeCompare(a.name)
+//   }
+//   if (sort === 'added') {
+//     return asc ? moment(a.added).diff(moment(b.added)) : moment(b.added).diff(moment(a.added))
+//   }
+//   return 0
+// }
 
 export const CartTable = (props: Props) => {
   const { cart } = useCartStore()
   const [sortedCart, setSortedCart] = useState<CartItem[]>(cart)
   const [sort, setSort] = useState<CartTableSort>('price')
   const [asc, setAsc] = useState<boolean>(false)
-
-  const toggleSort = (newSort: CartTableSort) => {
-    if (sort === newSort) {
-      setAsc(!asc)
-    } else {
-      setSort(newSort)
-      setAsc(true)
-    }
-  }
-
-  const toggleNameSort = () => {
-    toggleSort('name')
-  }
-  const togglePriceSort = () => {
-    toggleSort('price')
-  }
-  const toggleAddedSort = () => {
-    toggleSort('added')
-  }
 
   useEffect(() => {
     setSortedCart([...cart].sort((a, b) => sortFunc([a, b], sort, asc)))
@@ -119,22 +104,37 @@ export const CartTable = (props: Props) => {
             </div>
           </TableHead>
           <TableHead>
-            <button className="flex  gap-[8px] items-center justify-start" onClick={toggleNameSort}>
-              <span className="font-bold text-md  lg:text-lg truncate">Название</span>{' '}
-              {sort === 'name' && <span className="leading-[10px]">{asc ? '▲' : '▼'}</span>}
-            </button>
+            <SortOrderButton
+              className="flex gap-[8px] items-center justify-start font-bold text-md lg:text-lg truncate"
+              value={'name'}
+              sort={sort}
+              setSort={setSort}
+              asc={asc}
+              setAsc={setAsc}>
+              Название
+            </SortOrderButton>
           </TableHead>
           <TableHead className="justify-start   ">
-            <button className="flex gap-[8px] justify-start" onClick={togglePriceSort}>
-              <span className="font-bold text-md  lg:text-lg truncate">Цена</span>{' '}
-              {sort === 'price' && <span>{asc ? '▲' : '▼'}</span>}
-            </button>
+            <SortOrderButton
+              className="flex gap-[8px] items-center justify-start font-bold text-md lg:text-lg truncate"
+              value={'price'}
+              sort={sort}
+              setSort={setSort}
+              asc={asc}
+              setAsc={setAsc}>
+              Цена
+            </SortOrderButton>
           </TableHead>
           <TableHead className="justify-start   ">
-            <button className="flex gap-[8px] justify-start" onClick={toggleAddedSort}>
-              <span className="font-bold text-md items-center lg:text-lg truncate">Добавлен</span>{' '}
-              {sort === 'added' && <span className="mr-[8px]">{asc ? '▲' : '▼'}</span>}
-            </button>
+            <SortOrderButton
+              className="flex gap-[8px] items-center justify-start font-bold text-md lg:text-lg truncate"
+              value={'added'}
+              sort={sort}
+              setSort={setSort}
+              asc={asc}
+              setAsc={setAsc}>
+              Добавлен
+            </SortOrderButton>
           </TableHead>
         </TableRow>
       </TableHeader>
