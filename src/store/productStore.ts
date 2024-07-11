@@ -15,6 +15,7 @@ export const useProductStore = create<ProductStore>((set, get) => ({
     setShownProducts: (shownProducts) => {
         set({shownProducts})
     },
+
     products: [],
     fetchProducts: async () => {
         // Fetch products from API

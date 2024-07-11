@@ -7,16 +7,15 @@ import React, {useEffect, useMemo, useRef, useState} from "react";
 import {Link} from "react-router-dom";
 import {Product} from "@/types/common";
 import {Button} from "@/components/ui/button";
-import {Input} from "@/components/ui/input";
+import {ProductFilters} from "@/pages/productFilters";
+import {useProductFilterStorage} from "@/store/productFiltersStore";
 
-export const Catalog = () => {
+export const ProductCatalog = () => {
     const {products, shownProducts, setShownProducts} = useProductStore()
     const [isMore, setIsMore] = useState<boolean>(true)
-    const [limit, setLimit] = useState(6)
-    const [minPrice, setMinPrice] = useState<number>(0)
-    const [maxPrice, setMaxPrice] = useState<number | null>(null)
+    const [limit, setLimit] = useState(9)
+    const {minPrice, maxPrice, name} = useProductFilterStorage()
     const timeout = useRef<NodeJS.Timeout>()
-    const [name, setName] = useState<string>('')
 
     const increaseLimit = () => {
         setLimit((prev) => prev + 6)
@@ -61,7 +60,7 @@ export const Catalog = () => {
                 endMessage={<div className='flex justify-center items-center h-[150px]'>
                     <Button size={'lg'} className='uppercase' asChild><Link to={'/cart'}>Перейти в
                         корзину</Link></Button></div>}
-                loader={<div></div>}
+                loader={<span/>}
                 dataLength={shownProducts.length}>
                 <div className=' overflow-visible'>
                     {loading ? <PreLoader/> : isEmpty ?
@@ -76,23 +75,6 @@ export const Catalog = () => {
                 </div>
             </InfiniteScroll>
         </div>
-        <div
-            className='fixed w-screen md:w-auto left-0 rounded-0 md:static bottom-0 bg-neutral-0 p-[24px_16px] items-start  md:rounded-[12px] col-span-2 h-min flex flex-col gap-[8px]'>
-            <span className='text-neutral-500 font-bold'>Фильтровать по: </span>
-            <Input type={'number'}
-                   placeholder={'Минимальная цена'}
-                   onChange={(e) => {
-                       setMinPrice(Number(e.target.value))
-                   }}/>
-            <Input placeholder={'Максимальная цена'}
-                   className='bg-neutral-100 p-[4px_14px] rounded-[12px] text-neutral-0' type={'number'}
-                   onChange={(e) => {
-                       setMaxPrice(Number(e.target.value))
-                   }}/>
-            <Input placeholder={'Поиск по имени...'} type={'text'}
-                   onChange={(e) => {
-                       setName(e.target.value)
-                   }}/>
-        </div>
+        <ProductFilters/>
     </div>
 }

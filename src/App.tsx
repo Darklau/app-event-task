@@ -3,7 +3,7 @@ import './App.css';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {Layout} from "./components/layout/layout";
 import {useProductStore} from "@/store/productStore";
-import {Catalog} from "@/pages/catalog";
+import {ProductCatalog} from "@/pages/productCatalog";
 import {useLoadingStore} from "@/store/loadingStore";
 
 function App() {
@@ -26,7 +26,7 @@ function App() {
             <BrowserRouter>
                 <Routes>
                     <Route path={'/'} element={<Layout/>}>
-                        <Route path={'/'} element={<Catalog/>}/>
+                        <Route path={'/'} element={<ProductCatalog/>}/>
                         <Route path={'/cart'} element={<div>cart</div>}/>
                     </Route>
                 </Routes>
