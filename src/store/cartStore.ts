@@ -1,25 +1,33 @@
-import {create} from "zustand";
-import {Product} from "@/types/common";
-import {createJSONStorage, persist} from "zustand/middleware";
+import { create } from 'zustand'
+import { Product } from '@/types/common'
+import { createJSONStorage, persist } from 'zustand/middleware'
 
 interface CartStore {
-    cart: Product[]
-    addProductToCart: (product: Product) => void
-    removeProductFromCart: (productId: number) => void
+  cart: (Product & { added?: Date })[]
+  addProductToCart: (product: Product) => void
+  removeProductFromCart: (productId: number) => void
+  clearCart: () => void
 }
 
-
 //Хранилище корзины в localStorage
-export const useCartStorage = create(persist<CartStore>((set) => ({
-    cart: [],
-    addProductToCart: (product) => {
-        set((state) => ({
-            cart: [...state.cart, product]
+export const useCartStorage = create(
+  persist<CartStore>(
+    set => ({
+      clearCart: () => {
+        set({ cart: [] })
+      },
+      cart: [],
+      addProductToCart: product => {
+        set(state => ({
+          cart: [...state.cart, { ...product, added: new Date() }],
         }))
-    },
-    removeProductFromCart: (productId) => {
-        set((state) => ({
-            cart: state.cart.filter((product) => product.id !== productId)
+      },
+      removeProductFromCart: productId => {
+        set(state => ({
+          cart: state.cart.filter(product => product.id !== productId),
         }))
-    }
-}), {name: 'cartStorage', storage: createJSONStorage(() => localStorage)}))
+      },
+    }),
+    { name: 'cartStorage', storage: createJSONStorage(() => localStorage) }
+  )
+)
