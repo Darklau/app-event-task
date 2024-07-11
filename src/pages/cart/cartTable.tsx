@@ -1,8 +1,8 @@
-import { useCartStorage } from '@/store/cartStore'
+import { useCartStore } from '@/store/cartStore'
 import { CartTableRow } from '@/pages/cart/cartTableRow'
 
 export const CartTable = () => {
-  const { cart } = useCartStorage()
+  const { cart } = useCartStore()
 
   return (
     <div className="col-span-6 flex -mb-[2px] overflow-hidden flex-col  rounded-[12px] border-accent-main border-2">

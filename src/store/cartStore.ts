@@ -10,7 +10,7 @@ interface CartStore {
 }
 
 //Хранилище корзины в localStorage
-export const useCartStorage = create(
+export const useCartStore = create(
   persist<CartStore>(
     set => ({
       clearCart: () => {

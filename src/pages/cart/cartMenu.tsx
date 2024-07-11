@@ -1,11 +1,10 @@
-import React, { useMemo, useState } from 'react'
-import { useCartStorage } from '@/store/cartStore'
+import React, { useMemo } from 'react'
+import { useCartStore } from '@/store/cartStore'
 import { Button } from '@/components/ui/button'
 
 export const CartMenu = () => {
-  const { cart, clearCart } = useCartStorage()
+  const { cart, clearCart } = useCartStore()
   const totalPrice = useMemo(() => cart.reduce((acc, product) => acc + product.price, 0), [cart])
-  const [accordionOpen, setAccordionOpen] = useState<boolean>(false)
   return cart.length ? (
     <>
       <div className=" hidden  md:w-auto left-0 rounded-0 md:static bottom-0 bg-neutral-0 p-[24px_16px] items-start  md:rounded-[12px] col-span-2 h-min md:flex flex-col gap-[8px]">

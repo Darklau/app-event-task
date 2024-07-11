@@ -16,7 +16,7 @@ function App() {
       console.log('products fetched')
       setLoading(false)
     })
-  }, [])
+  }, [setImmediateLoading, fetchProducts, setLoading])
 
   return (
     <div className="App">

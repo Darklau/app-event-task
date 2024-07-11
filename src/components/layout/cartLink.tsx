@@ -1,18 +1,17 @@
 import { RouterLink } from '@/components/routerLink'
 import { ShoppingCartIcon } from 'lucide-react'
 import { NotificationBadge } from '@/components/ui/notificationBadge'
-import { useCartStorage } from '@/store/cartStore'
+import { useCartStore } from '@/store/cartStore'
 
 export const CartLink = () => {
-  const { cart } = useCartStorage()
+  const { cart } = useCartStore()
   return (
     <div className="relative">
       <NotificationBadge
         bottom={'-8px'}
         right={'-8px'}
         className={'absolute bg-accent-main  text-neutral-0 font-bold text-sm '}
-        val={cart.length}
-      >
+        val={cart.length}>
         <RouterLink to={'/cart'}>
           <ShoppingCartIcon />
         </RouterLink>

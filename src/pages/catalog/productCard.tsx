@@ -1,5 +1,5 @@
 import { Product } from '@/types/common'
-import { useCartStorage } from '@/store/cartStore'
+import { useCartStore } from '@/store/cartStore'
 import React, { useMemo } from 'react'
 import { Toggle } from '@/components/ui/toggle'
 
@@ -8,7 +8,7 @@ interface Props {
 }
 
 export const ProductCard = React.forwardRef<HTMLDivElement, Props>(({ product }, ref) => {
-  const { addProductToCart, removeProductFromCart, cart } = useCartStorage()
+  const { addProductToCart, removeProductFromCart, cart } = useCartStore()
   const isInCart = useMemo(() => {
     return cart.some(item => {
       return item.id === product.id
@@ -24,8 +24,7 @@ export const ProductCard = React.forwardRef<HTMLDivElement, Props>(({ product },
   return (
     <div
       ref={ref}
-      className="flex flex-col p-[8px_16px]  bg-neutral-0 rounded-[12px] justify-between items-start gap-[8px]"
-    >
+      className="flex flex-col p-[8px_16px]  bg-neutral-0 rounded-[12px] justify-between items-start gap-[8px]">
       <img
         className="h-[150px] m-[0_auto] object-contain rounded-[12px]"
         title={`Изображение ${product.name}`}
@@ -40,8 +39,7 @@ export const ProductCard = React.forwardRef<HTMLDivElement, Props>(({ product },
         title={isInCart ? 'Убрать товар из корзины' : 'Добавить товар в корзину'}
         variant={'ghost'}
         pressed={isInCart}
-        onClick={toggleCart}
-      >
+        onClick={toggleCart}>
         {isInCart ? 'Убрать из корзины' : 'Добавить в корзину'}
       </Toggle>
     </div>

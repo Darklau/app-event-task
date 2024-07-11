@@ -23,19 +23,20 @@ export const ProductCatalog = () => {
   const isEmpty = useMemo(() => {
     return !shownProducts.length
   }, [shownProducts])
-  const filter = (products: Product[]) => {
-    console.log(maxPrice, minPrice, limit, name)
-    return products
-      .filter(
-        product =>
-          minPrice < product.price &&
-          (maxPrice ? product.price < maxPrice : true) &&
-          product.name.toLowerCase().includes(name.toLowerCase())
-      )
-      .slice(0, limit)
-  }
 
   useEffect(() => {
+    const filter = (products: Product[]) => {
+      //Функция для фильтрации массива продуктов
+
+      return products
+        .filter(
+          product =>
+            minPrice < product.price &&
+            (maxPrice ? product.price < maxPrice : true) &&
+            product.name.toLowerCase().includes(name.toLowerCase())
+        )
+        .slice(0, limit)
+    }
     clearTimeout(timeout.current)
     timeout.current = setTimeout(() => {
       const newProducts = filter(products)
@@ -47,7 +48,7 @@ export const ProductCatalog = () => {
       }
       setShownProducts(newProducts)
     }, 500)
-  }, [maxPrice, minPrice, name, limit, products])
+  }, [maxPrice, minPrice, name, limit, products, setShownProducts])
 
   const { loading } = useLoadingStore()
   return (
@@ -64,8 +65,7 @@ export const ProductCatalog = () => {
             </div>
           }
           loader={<span className=""></span>}
-          dataLength={shownProducts.length}
-        >
+          dataLength={shownProducts.length}>
           <div className=" overflow-visible">
             {loading ? (
               <PreLoader />
