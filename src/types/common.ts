@@ -6,5 +6,5 @@ export interface Product {
 }
 
 export interface CartItem extends Product {
-  added?: Date | string
+  added: Date | string
 }

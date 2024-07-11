@@ -1,9 +1,9 @@
 import { create } from 'zustand'
-import { Product } from '@/types/common'
+import { CartItem, Product } from '@/types/common'
 import { createJSONStorage, persist } from 'zustand/middleware'
 
 interface CartStore {
-  cart: (Product & { added?: Date })[]
+  cart: CartItem[]
   addProductToCart: (product: Product) => void
   removeProductFromCart: (productId: number) => void
   clearCart: () => void
