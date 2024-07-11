@@ -1,29 +1,101 @@
 import { useCartStore } from '@/store/cartStore'
-import { CartTableRow } from '@/pages/cart/cartTableRow'
 
-export const CartTable = () => {
+import { Table, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
+import { cn } from '@/utils/cn'
+import { TableHTMLAttributes } from 'react'
+import { CartItem } from '@/types/common'
+import moment from 'moment'
+import { Button } from '@/components/ui/button'
+
+interface Props extends TableHTMLAttributes<HTMLTableElement> {
+  containerClass?: string
+}
+
+export const CartTableRow = ({ product }: { product: CartItem }) => {
+  const { removeProductFromCart } = useCartStore()
+  const removeFromCart = () => {
+    removeProductFromCart(product.id)
+  }
+  return (
+    <TableRow>
+      <TableCell>
+        <div className="flex justify-center items-center ">
+          <a rel="noreferrer" href={product.image} target={'_blank'}>
+            <img
+              title={`Изображение ${product.name}`}
+              className="max-h-[50px] lg:max-h-[100px] object-contain"
+              alt={`Изображение ${product.name}`}
+              src={product.image}
+            />
+          </a>
+        </div>
+      </TableCell>
+      <TableCell>
+        <div className="flex items-center">
+          <span
+            title={product.name}
+            className="text-start break-all xs:break-keep max-h-full  h-min text-sm md:text-md font-bold uppercase">
+            {product.name}
+          </span>
+        </div>
+      </TableCell>
+      <TableCell>
+        <span className="font-bold col-span-1 text-lg items-start justify-start text-accent-main">
+          {product.price.toLocaleString()} ₽
+        </span>
+      </TableCell>
+      <TableCell>
+        <div className="gap-[8px] md:gap-[16px] items-start flex flex-col">
+          <span className="font-bold text-lg text-accent-main">
+            {moment(product.added).format('DD.MM HH:mm')}
+          </span>
+
+          <Button
+            title={'Убрать товар из корзины'}
+            className="!p-[6px] whitespace-pre w-full leading-[100%] h-[30px]"
+            onClick={removeFromCart}>
+            <span>Убрать</span>
+            <span className="md:inline hidden">{' из корзины'}</span>
+          </Button>
+        </div>
+      </TableCell>
+    </TableRow>
+  )
+}
+export const CartTable = (props: Props) => {
   const { cart } = useCartStore()
 
   return (
-    <div className="col-span-6 flex -mb-[2px] overflow-hidden flex-col  rounded-[12px] border-accent-main ">
-      <div className="grid -mb-[1px] bg-neutral-0 gap-[8px] lg:gap-[16px]   p-[16px_24px]  grid-cols-4">
-        <div className="col-span-1 flex justify-start">
-          <span className="font-bold text-md lg:text-lg truncate">Изображение</span>
-        </div>
-        <div className="col-span-1 justify-start flex ">
-          <span className="font-bold text-md  lg:text-lg truncate">Название</span>
-        </div>
-        <div className="justify-start col-span-1 flex ">
-          <span className="font-bold text-md  lg:text-lg truncate">Цена</span>
-        </div>
-        <div className="justify-start col-span-1 flex ">
-          <span className="font-bold text-md  lg:text-lg truncate">Добавлен</span>
-        </div>
-      </div>
+    <Table {...props} className={cn('col-span-6  -mb-[2px] flex-col   ', props.className)}>
+      {/*header*/}
+      <TableHeader>
+        <TableRow className=" -mb-[1px] bg-neutral-0 gap-[8px] lg:gap-[16px]   p-[16px_24px]  grid-cols-4">
+          <TableHead>
+            <div className="flex justify-start">
+              <span className="font-bold text-md lg:text-lg truncate">Изображение</span>
+            </div>
+          </TableHead>
+          <TableHead>
+            <div className="flex justify-start">
+              <span className="font-bold text-md  lg:text-lg truncate">Название</span>
+            </div>
+          </TableHead>
+          <TableHead className="justify-start   ">
+            <div className="flex justify-start">
+              <span className="font-bold text-md  lg:text-lg truncate">Цена</span>
+            </div>
+          </TableHead>
+          <TableHead className="justify-start   ">
+            <div className="flex justify-start">
+              <span className="font-bold text-md  lg:text-lg truncate">Добавлен</span>
+            </div>
+          </TableHead>
+        </TableRow>
+      </TableHeader>
 
       {cart.map(cartElem => (
         <CartTableRow product={cartElem} />
       ))}
-    </div>
+    </Table>
   )
 }
