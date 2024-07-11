@@ -14,7 +14,7 @@ export const CartTable = () => {
           <span className="font-bold text-md  lg:text-lg truncate">Название</span>
         </div>
         <div className="justify-start col-span-1 flex ">
-          <span className="font-bold text-md  lg:text-lg truncate">Название</span>
+          <span className="font-bold text-md  lg:text-lg truncate">Цена</span>
         </div>
         <div className="justify-start col-span-1 flex ">
           <span className="font-bold text-md  lg:text-lg truncate">Добавлен</span>

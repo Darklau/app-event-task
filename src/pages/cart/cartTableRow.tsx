@@ -18,6 +18,7 @@ export const CartTableRow = ({ product }: Props) => {
         <div className="col-span-1 justify-center items-center flex">
           <a href={product.image} target={'_blank'}>
             <img
+              title={`Изображение ${product.name}`}
               className="max-h-[50px] lg:max-h-[100px] object-contain"
               alt={`Изображение ${product.name}`}
               src={product.image}
@@ -25,7 +26,10 @@ export const CartTableRow = ({ product }: Props) => {
           </a>
         </div>
         <div className="col-span-1 overflow-hidden items-start h-full flex">
-          <span className="text-start max-h-full flex h-min text-sm md:text-md font-bold uppercase">
+          <span
+            title={product.name}
+            className="text-start break-all xs:break-keep max-h-full flex h-min text-sm md:text-md font-bold uppercase"
+          >
             {product.name}
           </span>
         </div>
@@ -36,8 +40,10 @@ export const CartTableRow = ({ product }: Props) => {
           <span>{moment(product.added).format('DD.MM HH:mm')}</span>
 
           <Button
+            title={'Убрать товар из корзины'}
             className="!p-[6px] whitespace-pre w-full leading-[100%] h-[30px]"
-            onClick={removeFromCart}>
+            onClick={removeFromCart}
+          >
             <span>Убрать</span>
             <span className="md:inline hidden">{' из корзины'}</span>
           </Button>

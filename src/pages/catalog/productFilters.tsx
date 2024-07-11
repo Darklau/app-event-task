@@ -39,7 +39,7 @@ export const ProductFilters = () => {
           />
         </label>
         <label className="flex text-neutral-500 flex-col w-full items-start gap-[4px]">
-          <span className="font-bold text-sm">Названию:</span>
+          <span className="font-bold text-sm">Название:</span>
           <Input
             value={name}
             placeholder={'Поиск по имени...'}
@@ -54,10 +54,12 @@ export const ProductFilters = () => {
         collapsible
         value={accordionOpen}
         onValueChange={setAccordionOpen}
-        className="fixed md:hidden shadow-2xl shadow-black left-0 p-[16px_24px] bg-neutral-0  w-screen bottom-0"
+        className="fixed md:hidden shadow-2xl shadow-black left-0  min-h-[72px] px-[24px]  bg-neutral-0  w-screen bottom-0"
         type={'single'}>
         <AccordionItem className={'overflow-visible'} value="item-1">
-          <AccordionTrigger className="uppercase">Фильтры</AccordionTrigger>
+          <AccordionTrigger className="text-lg pt-[24px] font-normal text-neutral-500">
+            Фильтры
+          </AccordionTrigger>
           <AccordionContent className="flex  flex-col gap-[8px]">
             <label className="flex text-neutral-500 flex-col w-full items-start gap-[4px]">
               <span className="font-bold text-sm">Минимальная цена:</span>
@@ -83,7 +85,7 @@ export const ProductFilters = () => {
               />
             </label>
             <label className="flex text-neutral-500 flex-col w-full items-start gap-[4px]">
-              <span className="font-bold text-sm">Названию:</span>
+              <span className="font-bold text-sm">Название:</span>
               <Input
                 value={name}
                 placeholder={'Поиск по имени...'}

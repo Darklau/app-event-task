@@ -28,12 +28,20 @@ export const ProductCard = React.forwardRef<HTMLDivElement, Props>(({ product },
     >
       <img
         className="h-[150px] m-[0_auto] object-contain rounded-[12px]"
+        title={`Изображение ${product.name}`}
         alt={`Изображение ${product.name}`}
         src={product.image}
       />
-      <span className="font-bold text-start text-md leading-normal">{product.name}</span>
+      <span title={product.name} className="font-bold text-start text-md leading-normal">
+        {product.name}
+      </span>
       <span className="text-accent-main font-bold">{product.price} Р</span>
-      <Toggle variant={'ghost'} pressed={isInCart} onClick={toggleCart}>
+      <Toggle
+        title={isInCart ? 'Убрать товар из корзины' : 'Добавить товар в корзину'}
+        variant={'ghost'}
+        pressed={isInCart}
+        onClick={toggleCart}
+      >
         {isInCart ? 'Убрать из корзины' : 'Добавить в корзину'}
       </Toggle>
     </div>
