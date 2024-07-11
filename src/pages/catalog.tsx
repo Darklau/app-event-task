@@ -3,57 +3,72 @@ import {useLoadingStore} from "@/store/loadingStore";
 import {PreLoader} from "@/components/ui/preLoader";
 import {ProductCard} from "@/components/complex/productCard";
 import InfiniteScroll from "react-infinite-scroll-component";
-import {useCallback, useEffect, useMemo, useState} from "react";
+import {useEffect, useMemo, useRef, useState} from "react";
 import {Link} from "react-router-dom";
 import {Product} from "@/types/common";
 
 export const Catalog = () => {
     const {products, shownProducts, setShownProducts} = useProductStore()
     const [isMore, setIsMore] = useState<boolean>(true)
+    const [limit, setLimit] = useState(6)
     const [minPrice, setMinPrice] = useState<number>(0)
-    const [maxPrice, setMaxPrice] = useState<number>(1000000)
+    const [maxPrice, setMaxPrice] = useState<number | null>(null)
+    const timeout = useRef<NodeJS.Timeout>()
     const [name, setName] = useState<string>('')
+    const increaseLimit = () => {
+        setLimit((prev) => prev + 6)
+    }
     const isEmpty = useMemo(() => {
         return !shownProducts.length
     }, [shownProducts])
-    const filter = useCallback((product: Product) => {
-        return minPrice < product.price && (maxPrice ? product.price < maxPrice : true) && product.name.toLowerCase().includes(name.toLowerCase())
-    }, [maxPrice, minPrice, name])
-
-
-    useEffect(() => {
-        const newProducts = products.filter(filter).slice(0, 6)
-        if (!newProducts.length) {
-            setShownProducts([])
-            setIsMore(false)
-        } else {
-            setShownProducts(products.filter(filter).slice(0, 6))
-            setIsMore(true)
-        }
-
-    }, [maxPrice, minPrice, name]);
-
-    const fetchMore = () => {
-        setTimeout(() => {
-            const newShownProducts = products.filter(filter).slice(0, shownProducts.length + 6)
-            console.log('new shown products', shownProducts)
-            if (newShownProducts.length % 6 !== 0) {
-                setIsMore(false)
-            }
-            setShownProducts(newShownProducts)
-        }, 500)
-
+    const filter = (products: Product[]) => {
+        console.log(maxPrice, minPrice, limit, name)
+        return products.filter(
+            (product) =>
+                minPrice < product.price && (maxPrice ? product.price < maxPrice : true)
+                && product.name.toLowerCase().includes(name.toLowerCase())).slice(0, limit)
     }
+
+    useEffect
+    (() => {
+        clearTimeout(timeout.current)
+        timeout.current = setTimeout(() => {
+                const newProducts = filter(products)
+                if (newProducts.length === products.length) {
+                    console.log('no new products')
+                    setIsMore(false)
+                } else {
+                    setIsMore(true)
+                }
+                setShownProducts(newProducts)
+            }
+            , 500)
+    }, [maxPrice, minPrice, name, limit, products]);
+
+    // const fetchMore = () => {
+    //     setTimeout(() => {
+    //         const newShownProducts = products.filter(filter).slice(0, shownProducts.length + 6)
+    //         console.log('new shown products', shownProducts)
+    //         if (shownProducts.length - newShownProducts.length !== 6) {
+    //             console.log('Больше нет продуктов')
+    //             setIsMore(false)
+    //         } else {
+    //             setIsMore(true)
+    //         }
+    //         setShownProducts(newShownProducts)
+    //     }, 500)
+    //
+    // }
     const {loading} = useLoadingStore()
     return <div className='grid gap-[24px] grid-cols-8'>
         <div className='col-span-6'>
             <InfiniteScroll
                 className=''
-                next={fetchMore}
+                next={increaseLimit}
                 hasMore={isMore}
                 endMessage={<div className='flex justify-center items-center h-[150px]'><Link to={'/cart'}>Перейти в
                     корзину</Link></div>}
-                loader={<PreLoader/>}
+                loader={''}
                 dataLength={shownProducts.length}>
                 <div>
                     {loading ? <PreLoader/> : isEmpty ?
