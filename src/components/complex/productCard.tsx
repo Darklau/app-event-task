@@ -1,7 +1,7 @@
 import {Product} from "@/types/common";
 import {useCartStorage} from "@/store/cartStore";
 import React, {useMemo} from "react";
-import {cn} from "@/utils/cn";
+import {Toggle} from "@/components/ui/toggle";
 
 interface Props {
     product: Product
@@ -31,11 +31,12 @@ export const ProductCard = React.forwardRef<HTMLDivElement, Props>(({product}, r
             {product.name}
         </span>
         <span className='text-accent-main font-bold'>{product.price} Р</span>
-        <button
-            className={cn('p-[12px_14px] rounded-md transition-colors', isInCart ? 'bg-accent-hover text-neutral-0' : 'bg-neutral100')}
+        <Toggle
+            variant={'ghost'}
+            pressed={isInCart}
             onClick={toggleCart}>
             {isInCart ? 'Убрать из корзины' :
                 'Добавить в корзину'}
-        </button>
+        </Toggle>
     </div>
 })

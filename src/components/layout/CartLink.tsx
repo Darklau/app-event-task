@@ -7,8 +7,8 @@ export const CartLink = () => {
     const {cart} = useCartStorage()
     return <div className='relative'>
 
-        <NotificationBadge bottom={'0'} right={'0'}
-                           className={'absolute text-accent-hover bg-neutral-0 font-bold text-sm '}
+        <NotificationBadge bottom={'-8px'} right={'-8px'}
+                           className={'absolute bg-accent-main  text-neutral-0 font-bold text-sm '}
                            val={cart.length}>
             <RouterLink to={'/cart'}>
                 <ShoppingCartIcon/>

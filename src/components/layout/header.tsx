@@ -9,9 +9,11 @@ export const mainNavLinks: { to: string, children: React.ReactNode }[] = [
 ]
 
 const Header = () => {
-    return <header className='flex items-center bg-neutral-300 min-h-[72px] '>
+    return <header className='flex bg-opacity-75 shadow-xl bg-neutral-0 items-center  top-0 w-full fixed min-h-[72px] '>
         <div className='container  justify-between items-center flex'>
-            <Link to={'/'} className='link  '><Logo height={50} width={50}/></Link>
+            <Link to={'/'} className='[&_svg_path]:fill-current [&_*]:text-accent-green link'><Logo
+                height={50}
+                width={50}/></Link>
             <nav className='flex gap-[8px]'>
                 {mainNavLinks.map((link) =>
                     <RouterLink key={link.to} {...link}/>

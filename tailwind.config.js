@@ -44,18 +44,33 @@ module.exports = {
             colors: {
                 accent: {
                     main: '#9370DB',
-                    hover: '#66d395'
+                    mainHover: '#c770db',
+                    green: '#66d395'
                 },
                 neutral: {
                     0: '#FFF',
                     100: '#e0c8e0',
                     300: '#C088C0FF',
-                    500: '#BA55D3',
+                    500: '#754c7c',
 
                 }
 
             }
-        }
+        }, keyframes: {
+            "accordion-down": {
+                from: {height: "0"},
+                to: {height: "var(--radix-accordion-content-height)"},
+            },
+            "accordion-up": {
+                from: {height: "var(--radix-accordion-content-height)"},
+                to: {height: "0"},
+            },
+        },
+        animation: {
+            "accordion-down": "accordion-down 0.2s ease-out",
+            "accordion-up": "accordion-up 0.2s ease-out",
+        },
+
     },
     plugins: [],
 }
