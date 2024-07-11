@@ -5,7 +5,7 @@ export const CartTable = () => {
   const { cart } = useCartStore()
 
   return (
-    <div className="col-span-6 flex -mb-[2px] overflow-hidden flex-col  rounded-[12px] border-accent-main border-2">
+    <div className="col-span-6 flex -mb-[2px] overflow-hidden flex-col  rounded-[12px] border-accent-main ">
       <div className="grid -mb-[1px] bg-neutral-0 gap-[8px] lg:gap-[16px]   p-[16px_24px]  grid-cols-4">
         <div className="col-span-1 flex justify-start">
           <span className="font-bold text-md lg:text-lg truncate">Изображение</span>

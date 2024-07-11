@@ -13,7 +13,7 @@ export const CartTableRow = ({ product }: Props) => {
     removeProductFromCart(product.id)
   }
   return (
-    <div className="border-b-2 last:border-0  border-accent-main  ">
+    <div className="last:border-0  border-accent-main  ">
       <div className="grid bg-neutral-0  p-[16px_12px] gap-[8px] pr-[24px] lg:gap-[16px]  grid-cols-4">
         <div className="col-span-1 justify-center items-center flex">
           <a rel="noreferrer" href={product.image} target={'_blank'}>

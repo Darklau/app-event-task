@@ -17,7 +17,7 @@ const toggleVariants = cva(
         default:
           'bg-neutral-0 text-accent-main hover:bg-accent-green data-[state=on]:bg-accent-green data-[state=on]:hover:bg-opacity-80 data-[state=on]:text-neutral-0 hover:text-neutral-0',
         ghost:
-          ' border-neutral-700 hover:text-neutral-0 text-neutral-700 bg-transparent hover:bg-accent-green data-[state=on]:hover:bg-opacity-80  data-[state=on]:text-neutral-0 data-[state=on]:bg-accent-green text-accent-main',
+          ' border hover:text-neutral-0 text-neutral-700 bg-transparent hover:bg-accent-green data-[state=on]:hover:bg-opacity-80  data-[state=on]:text-neutral-0 data-[state=on]:bg-accent-green text-accent-main',
       },
       size: {
         default: 'h-10 px-3',
