@@ -12,7 +12,7 @@ const buttonVariants = cva(
         default:
           'bg-accent-main text-neutral-0  hover:bg-accent-green data-[state=on]:bg-accent-green data-[state=on]:text-neutral-0 hover:text-neutral-0',
         ghost:
-          ' border-neutral-700 hover:text-neutral-0 text-neutral-700 bg-transparent hover:bg-accent-green  data-[state=on]:text-neutral-0 data-[state=on]:bg-accent-green text-accent-main',
+          '  hover:text-neutral-0 text-neutral-700 bg-transparent hover:bg-accent-green  data-[state=on]:text-neutral-0 data-[state=on]:bg-accent-green text-accent-main',
 
         destructive: 'bg-destructive text-destructive-foreground hover:bg-destructive/90',
         outline: 'border border-input bg-background hover:bg-accent hover:text-accent-foreground',
