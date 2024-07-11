@@ -19,9 +19,7 @@ function App() {
   }, [setImmediateLoading, fetchProducts, setLoading])
 
   return (
-    <div className="App">
-      <div className="flex gap-[12px]"></div>
-      <BrowserRouter>
+    <BrowserRouter>
         <Routes>
           <Route path={'/'} element={<Layout />}>
             <Route path={'/'} element={<ProductCatalog />} />
@@ -29,7 +27,7 @@ function App() {
           </Route>
         </Routes>
       </BrowserRouter>
-    </div>
+  
   )
 }
 
