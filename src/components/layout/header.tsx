@@ -4,9 +4,10 @@ import { Logo } from '@/components/ui/icons'
 import { Link } from 'react-router-dom'
 import { CartLink } from '@/components/layout/cartLink'
 
-export const mainNavLinks: { to: string; children: React.ReactNode }[] = [
-  { to: '/', children: 'Каталог' },
-]
+export const mainNavLinks: {
+  to: string
+  children: React.ReactNode
+}[] = [{ to: '/', children: 'Каталог' }]
 
 const Header = () => {
   return (
@@ -14,9 +15,9 @@ const Header = () => {
       <div className="container  justify-between items-center flex">
         <Link
           to={'/'}
-          className="[&_svg_path]:fill-current focus-visible:ring-2 rounded-[12px]
+          className="[&_svg_path]:fill-current [&_svg_path]:stroke-current focus-visible:ring-2 rounded-[12px]
           focus-visible:ring-accent-main  ring-offset-background outline-0 focus-visible:ring-offset-2  [&_*]:text-accent-green link">
-          <Logo height={50} width={50} />
+          <Logo height={70} width={70} />
         </Link>
         <nav className="flex gap-[8px]">
           {mainNavLinks.map(link => (
