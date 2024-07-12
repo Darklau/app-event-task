@@ -13,7 +13,7 @@ export const ProductFilters = () => {
   const { setMinPrice, setMaxPrice, setName, name, minPrice, maxPrice } = useProductFilterStorage()
   return (
     <>
-      <div className=" hidden  md:w-auto left-0 rounded-0 md:static bottom-0 bg-neutral-0 p-[24px_16px] items-start  md:rounded-[12px] col-span-2 h-min md:flex flex-col gap-[8px]">
+      <div className=" hidden  left-0 rounded-0 md:static bottom-0 bg-neutral-0 p-[24px_16px] items-start  md:rounded-[12px] col-span-2 h-min lg:flex flex-col gap-[8px]">
         <span className="text-neutral-500 font-bold">Фильтровать: </span>
         <label className="flex text-neutral-500 flex-col w-full items-start gap-[4px]">
           <span className="font-bold text-sm">Минимальная цена:</span>
@@ -54,7 +54,7 @@ export const ProductFilters = () => {
         collapsible
         value={accordionOpen}
         onValueChange={setAccordionOpen}
-        className="fixed md:hidden shadow-2xl shadow-black left-0  min-h-[72px] px-[24px]  bg-neutral-0  w-screen bottom-0"
+        className="fixed lg:hidden shadow-2xl shadow-black left-0  min-h-[72px] px-[24px]  bg-neutral-0  w-screen bottom-0"
         type={'single'}>
         <AccordionItem className={'overflow-visible'} value="item-1">
           <AccordionTrigger className="text-lg pt-[24px] font-normal text-neutral-500">

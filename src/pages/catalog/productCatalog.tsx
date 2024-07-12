@@ -53,7 +53,7 @@ export const ProductCatalog = () => {
 
   const { loading } = useLoadingStore()
   return (
-    <div className="md:grid gap-[24px] grid-cols-8">
+    <div className="lg:grid gap-[24px] grid-cols-8">
       <Meta title={'Каталог'} description={'Каталог товаров'} />
       <div className="col-span-6  lg:md-0  min-h-screen">
         <InfiniteScroll

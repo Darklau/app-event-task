@@ -66,24 +66,6 @@ export const CartTableRow = ({ product }: { product: CartItem }) => {
   )
 }
 
-// const sortFunc = (
-//   items: [Product | CartItem, Product | CartItem],
-//   sort: CartTableSort,
-//   asc: boolean
-// ) => {
-//   const [a, b] = items
-//   if (sort === 'price') {
-//     return asc ? a.price - b.price : b.price - a.price
-//   }
-//   if (sort === 'name') {
-//     return asc ? a.name.localeCompare(b.name) : b.name.localeCompare(a.name)
-//   }
-//   if (sort === 'added') {
-//     return asc ? moment(a.added).diff(moment(b.added)) : moment(b.added).diff(moment(a.added))
-//   }
-//   return 0
-// }
-
 export const CartTable = (props: Props) => {
   const { cart } = useCartStore()
   const [sortedCart, setSortedCart] = useState<CartItem[]>(cart)

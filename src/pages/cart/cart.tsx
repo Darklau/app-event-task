@@ -10,7 +10,7 @@ import React from 'react'
 const Cart = () => {
   const { cart } = useCartStore()
   return (
-    <div className={cn(' gap-[24px] grid-cols-8', cart.length && 'md:grid')}>
+    <div className={cn(' gap-[24px] grid-cols-8', cart.length && 'lg:grid')}>
       <Meta title={'Корзина'} description={'Корзина с товарами'} />
       {cart.length ? (
         <CartTable containerClass="col-span-6" />
