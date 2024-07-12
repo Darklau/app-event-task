@@ -9,6 +9,7 @@ import { Product } from '@/types/common'
 import { Button } from '@/components/ui/button'
 import { ProductFilters } from '@/pages/catalog/productFilters'
 import { useProductFilterStorage } from '@/store/productFiltersStore'
+import { Meta } from '@/components/meta/meta'
 
 export const ProductCatalog = () => {
   const { products, shownProducts, setShownProducts } = useProductStore()
@@ -53,6 +54,7 @@ export const ProductCatalog = () => {
   const { loading } = useLoadingStore()
   return (
     <div className="md:grid gap-[24px] grid-cols-8">
+      <Meta title={'Каталог'} description={'Каталог товаров'} />
       <div className="col-span-6  lg:md-0  min-h-screen">
         <InfiniteScroll
           next={increaseLimit}

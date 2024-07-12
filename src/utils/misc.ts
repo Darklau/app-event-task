@@ -3,11 +3,6 @@ import moment from 'moment/moment'
 
 export type ProductSort = 'price' | 'name'
 export type CartTableSort = 'price' | 'name' | 'added'
-type ProductSortFunc = (items: [Product, Product], sort: ProductSort, asc: boolean) => number
-
-type CartTableSortFunc = (items: [CartItem, CartItem], sort: CartTableSort, asc: boolean) => number
-
-type SortFunc = ProductSortFunc | CartTableSortFunc
 
 export function sortFunc(items: [Product, Product], sort: ProductSort, asc: boolean): number
 export function sortFunc(items: [CartItem, CartItem], sort: CartTableSort, asc: boolean): number

@@ -4,11 +4,14 @@ import { Button } from '@/components/ui/button'
 import { Link } from 'react-router-dom'
 import { CartMenu } from '@/pages/cart/cartMenu'
 import { CartTable } from '@/pages/cart/cartTable'
+import { Meta } from '@/components/meta/meta'
+import React from 'react'
 
 const Cart = () => {
   const { cart } = useCartStore()
   return (
     <div className={cn(' gap-[24px] grid-cols-8', cart.length && 'md:grid')}>
+      <Meta title={'Корзина'} description={'Корзина с товарами'} />
       {cart.length ? (
         <CartTable containerClass="col-span-6" />
       ) : (

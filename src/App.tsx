@@ -6,6 +6,7 @@ import { useProductStore } from '@/store/productStore'
 import { ProductCatalog } from '@/pages/catalog/productCatalog'
 import { useLoadingStore } from '@/store/loadingStore'
 import Cart from '@/pages/cart/cart'
+import { Helmet } from 'react-helmet'
 
 function App() {
   const { fetchProducts } = useProductStore()
@@ -20,6 +21,12 @@ function App() {
 
   return (
     <div className="App">
+      <Helmet>
+        <meta
+          name={'viewport'}
+          content={'width=device-width, initial-scale=1, viewport-fit=cover'}
+        />
+      </Helmet>
       <div className="flex gap-[12px]"></div>
       <BrowserRouter>
         <Routes>
