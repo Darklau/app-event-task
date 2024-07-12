@@ -6,6 +6,8 @@ export type CartTableSort = 'price' | 'name' | 'added'
 
 export function sortFunc(items: [Product, Product], sort: ProductSort, asc: boolean): number
 export function sortFunc(items: [CartItem, CartItem], sort: CartTableSort, asc: boolean): number
+
+//Функция для сортировки товаров передается в качестве callback в Array.sort()
 export function sortFunc(
   items: [Product | CartItem, Product | CartItem],
   sort: ProductSort | CartTableSort,
