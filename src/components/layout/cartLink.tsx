@@ -1,4 +1,4 @@
-import { RouterLink } from '@/components/routerLink'
+import { RouterLink } from '@/components/ui/routerLink'
 import { ShoppingCartIcon } from 'lucide-react'
 import { NotificationBadge } from '@/components/ui/notificationBadge'
 import { useCartStore } from '@/store/cartStore'

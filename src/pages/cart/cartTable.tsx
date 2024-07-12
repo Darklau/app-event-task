@@ -23,14 +23,16 @@ export const CartTableRow = ({ product }: { product: CartItem }) => {
     <TableRow>
       <TableCell>
         <div className="flex justify-center items-center ">
-          <a rel="noreferrer" href={product.image} target={'_blank'}>
-            <img
-              title={`Изображение ${product.name}`}
-              className="max-h-[50px] lg:max-h-[100px] object-contain"
-              alt={`Изображение ${product.name}`}
-              src={product.image}
-            />
-          </a>
+          <Button variant="link" asChild size={'none'}>
+            <a rel="noreferrer" href={product.image} target={'_blank'}>
+              <img
+                title={`Изображение ${product.name}`}
+                className="max-h-[50px] lg:max-h-[100px] object-contain"
+                alt={`Изображение ${product.name}`}
+                src={product.image}
+              />
+            </a>
+          </Button>
         </div>
       </TableCell>
       <TableCell>

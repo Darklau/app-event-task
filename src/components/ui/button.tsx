@@ -5,21 +5,22 @@ import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from '@/utils/cn'
 
 const buttonVariants = cva(
-  'inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50',
+  'inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-main focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50',
   {
     variants: {
       variant: {
         default:
           'bg-accent-main text-neutral-0  hover:bg-accent-green data-[state=on]:bg-accent-green data-[state=on]:text-neutral-0 hover:text-neutral-0',
         ghost:
-          '  hover:text-neutral-0 text-neutral-700 bg-transparent hover:bg-accent-green  data-[state=on]:text-neutral-0 data-[state=on]:bg-accent-green text-accent-main',
+          'hover:text-neutral-0 text-neutral-700 bg-transparent hover:bg-accent-green  data-[state=on]:text-neutral-0 data-[state=on]:bg-accent-green text-accent-main',
 
         destructive: 'bg-destructive text-destructive-foreground hover:bg-destructive/90',
         outline: 'border border-input bg-background hover:bg-accent hover:text-accent-foreground',
         secondary: 'bg-secondary text-secondary-foreground hover:bg-secondary/80',
-        link: 'text-primary underline-offset-4 hover:underline',
+        link: 'text-primary  ',
       },
       size: {
+        none: '!ring-offset-[6px] p-0 h-auto w-auto',
         default: 'h-10 px-4 py-2',
         sm: 'h-9 rounded-md px-3',
         lg: 'h-11 rounded-md px-8',

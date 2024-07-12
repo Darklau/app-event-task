@@ -1,4 +1,5 @@
 import React, { ButtonHTMLAttributes } from 'react'
+import { Button } from '@/components/ui/button'
 
 interface Props<T extends string> extends ButtonHTMLAttributes<any> {
   value: T
@@ -22,9 +23,9 @@ export const SortOrderButton = <T extends string>({
   }
 
   return (
-    <button onClick={toggleSort} className="" {...props}>
+    <Button size={'none'} variant={'link'} onClick={toggleSort} className="" {...props}>
       <span>{props.children || value}</span>
       {value === sort && <span className="">{asc ? '↑' : '↓'}</span>}
-    </button>
+    </Button>
   )
 }

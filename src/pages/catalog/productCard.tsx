@@ -7,7 +7,7 @@ interface Props {
   product: Product
 }
 
-export const ProductCard = React.forwardRef<HTMLDivElement, Props>(({ product }, ref) => {
+export const ProductCard = React.forwardRef<HTMLLIElement, Props>(({ product }, ref) => {
   const { addProductToCart, removeProductFromCart, cart } = useCartStore()
   const isInCart = useMemo(() => {
     return cart.some(item => {
@@ -22,7 +22,7 @@ export const ProductCard = React.forwardRef<HTMLDivElement, Props>(({ product },
     }
   }
   return (
-    <div
+    <li
       ref={ref}
       className="flex flex-col p-[8px_16px]  bg-neutral-0 rounded-[12px] justify-between items-start gap-[8px]">
       <img
@@ -42,6 +42,6 @@ export const ProductCard = React.forwardRef<HTMLDivElement, Props>(({ product },
         onClick={toggleCart}>
         {isInCart ? 'Убрать из корзины' : 'Добавить в корзину'}
       </Toggle>
-    </div>
+    </li>
   )
 })
