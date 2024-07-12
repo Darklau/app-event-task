@@ -7,7 +7,11 @@ const Table = React.forwardRef<
     containerClass?: string
   }
 >(({ className, ...props }, ref) => (
-  <div className={cn(props.containerClass, 'overflow-x-auto overflow-y-hidden rounded-[12px]')}>
+  <div
+    className={cn(
+      props.containerClass,
+      'overflow-x-auto bg-neutral-0 overflow-y-hidden rounded-[12px]'
+    )}>
     <table
       ref={ref}
       className={cn('rounded-[12px] w-full caption-bottom text-sm', className)}
