@@ -57,6 +57,7 @@ export const ProductCatalog = () => {
       <Meta title={'Каталог'} description={'Каталог товаров'} />
       <div className="col-span-6  lg:md-0  min-h-screen">
         <InfiniteScroll
+          scrollThreshold={0}
           next={increaseLimit}
           hasMore={isMore}
           endMessage={
