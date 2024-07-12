@@ -82,7 +82,9 @@ export const CartTable = (props: Props) => {
         <TableRow className=" -mb-[1px] bg-neutral-0 gap-[8px] lg:gap-[16px]   p-[16px_24px]  grid-cols-4">
           <TableHead>
             <div className="flex justify-start">
-              <span className="font-bold text-md lg:text-lg truncate">Изображение</span>
+              <span className="font-bold text-md overflow-hidden lg:text-lg truncate">
+                Изображение
+              </span>
             </div>
           </TableHead>
           <TableHead>
