@@ -8,6 +8,10 @@
   text-align: center;
 }
 
+html {
+  scrollbar-gutter: stable;
+}
+
 body {
   @apply bg-neutral-100;
 }
